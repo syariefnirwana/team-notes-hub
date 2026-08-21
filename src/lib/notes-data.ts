@@ -39,9 +39,10 @@ export const ROLE_LABEL: Record<StudioRole, string> = {
 
 export async function ensureProfile(displayName?: string, avatarUrl?: string) {
   const { data, error } = await supabase.rpc("ensure_profile", {
-    _display_name: displayName ?? null,
-    _avatar_url: avatarUrl ?? null,
+    _display_name: displayName ?? undefined,
+    _avatar_url: avatarUrl ?? undefined,
   });
+
   if (error) throw error;
   return data as unknown as Profile;
 }
